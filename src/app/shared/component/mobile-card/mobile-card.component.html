@@ -1,0 +1,74 @@
+
+<!-- {{getMobile | json}} -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-body"
+            [ngClass]="{
+                noProdAval : !getMobile.isAvailable
+            }"
+            >
+                
+                <div class="row">
+                    <div class="col-md-4">
+                       <div class="img-container mb-2">
+                        <img *ngIf="getMobile.image; else noImg" 
+                        [src]="getMobile.image"
+                        [alt]="getMobile.name"
+                        [title]="getMobile.name" class="w-100">
+
+                        <ng-template #noImg>
+                            <p class="noImgText">No Image</p>
+                        </ng-template>
+                       </div>
+                       
+                       <div class="d-flex justify-content-between">
+                        <button [disabled]="!getMobile.isAvailable"
+                        class="btn btn-outline-warning">Add To Cart</button>
+                        <button [disabled]="!getMobile.isAvailable"
+                         class="btn btn-outline-primary">By Now</button>
+                       </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h1>
+                         {{getMobile.name}}
+                          <small class="badge"
+                          [ngClass]="{
+                            'badge-success' : getMobile.rating >= 4,
+                            'badge-warning' : getMobile.rating >=3 && getMobile.rating < 4,
+                            'badge-danger'  : getMobile.rating < 3
+                          }"
+                          >
+                              {{getMobile.rating}}
+                          </small>
+                       </h1>
+                       <h5>Feature</h5>
+                       <ul class="list-group">
+                         <li class="list-group-item" *ngFor="let Feature of getMobile.features">
+                               {{Feature}}
+                         </li>
+                       </ul>
+                    </div>
+                    <div class="col-md-2">
+                            <h3 class="font-wight-bold">
+                                {{getMobile.price - (getMobile.price * 15) | currency : 'INR'}}
+                                <br>
+                                <small>
+                                    <del>
+                                        {{getMobile.price | currency : 'INR'}}
+                                    </del>
+                                </small>
+                            </h3>
+                            <strong class="text-success" *ngIf="getMobile.noOfItems < 10">
+                               Only {{getMobile.noOfItems}} Left !!!
+                            </strong>
+                    </div>
+                </div>
+            </div>
+            <p class="text-danger isNotAvailable" *ngIf="!getMobile.isAvailable">
+                Product is not available
+            </p>
+        </div>
+    </div>
+</div>

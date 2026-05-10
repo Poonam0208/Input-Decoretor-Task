@@ -1,0 +1,15 @@
+
+<h1 class="bg-info text-white p-3">
+    Movie-Card
+</h1>
+
+<div class="row" *ngIf="movieArr.length > 0 ; else noMovie">
+    <div class="col-md-4 mb-4" *ngFor="let movie of movieArr ; TrackBy : TrackById">
+         <app-movie-card [getMovie]="movie"></app-movie-card>
+    </div>
+</div>
+<ng-template #noMovie>
+    <p class="alert alert-info">
+        No Movie !!!
+    </p>
+</ng-template>

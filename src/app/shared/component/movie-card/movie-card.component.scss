@@ -1,0 +1,48 @@
+
+
+.Movie-Card{
+    height: 450px;
+
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .titleInfo{
+        padding: 15px;
+        background-color: #22254b;
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        .movieTitle{
+            height: 28px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .overView{
+        padding: 15px;
+        position: absolute;
+        top: 30%;
+        background-color: #fff;
+        height: 70%;
+        transform: scale(0);
+        opacity: 0;
+        transition: all .4s ease-in-out;
+    }
+    .overView h3{
+        font-weight: bold;
+    }
+
+    &:is(:active, :focus, :hover) .overView{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+

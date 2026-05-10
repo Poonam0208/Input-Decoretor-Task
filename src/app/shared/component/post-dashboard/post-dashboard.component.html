@@ -1,0 +1,14 @@
+
+<h1 class="bg-info text-white p-2">POST_CARD</h1>
+
+<div class="row" *ngIf="postArr.length > 0; else noPost">
+    <div class="col-md-4" *ngFor="let post of postArr ; TrackBy : TrackByPostId">
+        <app-post-card [getPost]="post"></app-post-card>
+    </div>
+</div>
+
+<ng-template #noPost>
+    <p class="alert alert-info">
+        No Post !!!
+    </p>
+</ng-template>
